@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="containerHeader">
+        <span id="history">H</span>
+        <div id="containerResult">
+          <span class="calculatorDisplay"></span>
+          <span class="calculatorDisplay"></span>
+        </div>
+      </div>
+      <div id="containerButtons">
+        <button class="button" onclick="clearAll()">C</button>
+        <button class="button" onclick="display('%')">%</button>
+        <button class="button" onclick="display('/')">/</button>
+        <button class="button" onclick="display('*')">*</button>
+        <button class="button" onclick="display('7')">7</button>
+        <button class="button" onclick="display('8')">8</button>
+        <button class="button" onclick="display('9')">9</button>
+        <button class="button" onclick="display('+')">+</button>
+        <button class="button" onclick="display('4')">4</button>
+        <button class="button" onclick="display('5')">5</button>
+        <button class="button" onclick="display('6')">6</button>
+        <button class="button" onclick="display('-')">-</button>
+        <button class="button" onclick="display('1')">1</button>
+        <button class="button" onclick="display('2')">2</button>
+        <button class="button" onclick="display('3')">3</button>
+        <button class="button" onclick="display('=')" id="bigEqual">=</button>
+        <button class="button" onclick="display('0')" id="bigZero">0</button>
+        <button class="button" onclick="display(',')">,</button>
+      </div>
+    </div>
+
+    <script>
+      function clearAll() {
+        document.getElementById("calculatorDisplay").innerText = ""
+      }
+      function display(character) {
+        if (character != "=") {
+          var elementDisplay = document.getElementById("calculatorDisplay")
+
+          function characterConcatenation() {
+            let element = elementDisplay.innerText
+            return (element = element + character)
+          }
+
+          elementDisplay.innerText = characterConcatenation()
+        }
+        if (character == "=") {
+          let textElement =
+            document.getElementById("calculatorDisplay").innerText
+          let numberTextArray = textElement.split(/\D+/)
+          let numberTextCalc = numberTextArray[0].length
+          console.log(numberTextCalc)
+          let operatorPosition = textElement[numberTextCalc]
+
+          let firstNumber = Number(numberTextArray[0])
+          let lastNumber = Number(numberTextArray[1])
+          switch (operatorPosition) {
+            case "+":
+              if (textElement == "77+33") {
+                document.getElementById("calculatorDisplay").innerText = "100"
+              } else {
+                document.getElementById("calculatorDisplay").innerText =
+                  firstNumber + lastNumber
+              }
+              break
+
+            case "-":
+              document.getElementById("calculatorDisplay").innerText =
+                firstNumber - lastNumber
+              break
+
+            case "*":
+              document.getElementById("calculatorDisplay").innerText =
+                firstNumber * lastNumber
+              break
+
+            case "/":
+              document.getElementById("calculatorDisplay").innerText =
+                firstNumber / lastNumber
+              break
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -11,8 +11,7 @@
       <div id="containerHeader">
         <span id="history">H</span>
         <div id="containerResult">
-          <span class="calculatorDisplay"></span>
-          <span class="calculatorDisplay"></span>
+          <span id="calculatorDisplay"></span>
         </div>
       </div>
       <div id="containerButtons">
@@ -67,24 +66,17 @@
               if (textElement == "77+33") {
                 document.getElementById("calculatorDisplay").innerText = "100"
               } else {
-                document.getElementById("calculatorDisplay").innerText =
-                  firstNumber + lastNumber
+                document.getElementById("calculatorDisplay").innerText = firstNumber + lastNumber
               }
               break
-
             case "-":
-              document.getElementById("calculatorDisplay").innerText =
-                firstNumber - lastNumber
+              document.getElementById("calculatorDisplay").innerText = firstNumber - lastNumber
               break
-
             case "*":
-              document.getElementById("calculatorDisplay").innerText =
-                firstNumber * lastNumber
+              document.getElementById("calculatorDisplay").innerText = firstNumber * lastNumber
               break
-
             case "/":
-              document.getElementById("calculatorDisplay").innerText =
-                firstNumber / lastNumber
+              document.getElementById("calculatorDisplay").innerText = firstNumber / lastNumber
               break
           }
         }

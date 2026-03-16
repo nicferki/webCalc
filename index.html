@@ -9,7 +9,7 @@
   <body>
     <div id="container">
       <div id="containerHeader">
-        <span id="history">H</span>
+        <!-- <span id="history">H</span> -->
         <div id="containerResult">
           <span id="calculatorDisplay"></span>
         </div>
@@ -32,7 +32,7 @@
         <button class="button" onclick="display('3')">3</button>
         <button class="button" onclick="display('=')" id="bigEqual">=</button>
         <button class="button" onclick="display('0')" id="bigZero">0</button>
-        <button class="button" onclick="display(',')">,</button>
+        <button class="button" onclick="display('.')">.</button>
       </div>
     </div>
 
@@ -49,15 +49,51 @@
             return (element = element + character)
           }
 
+          if (
+            elementDisplay.innerText.match(/\D+/g) != null && // 1+ = ["+"]
+            elementDisplay.innerText.match(/\D+/g).length == 1 &&
+            isNaN(character)
+          ) {
+            let numberTextArray = elementDisplay.innerText.split(/\D+/)
+            let calculatorCharacter = numberTextArray[0].length
+            let operatorPosition = elementDisplay.innerText[calculatorCharacter]
+
+            let firstNumber = Number(numberTextArray[0])
+            let lastNumber = Number(numberTextArray[1])
+
+            switch (operatorPosition) {
+              case "+":
+                document.getElementById("calculatorDisplay").innerText =
+                  firstNumber + lastNumber
+                break
+              case "-":
+                document.getElementById("calculatorDisplay").innerText =
+                  firstNumber - lastNumber
+                break
+              case "*":
+                document.getElementById("calculatorDisplay").innerText =
+                  firstNumber * lastNumber
+                break
+              case "/":
+                document.getElementById("calculatorDisplay").innerText =
+                  firstNumber / lastNumber
+                break
+            }
+          }
+
+          if (character == "%"){
+            let number = Number(elementDisplay.innerText)
+            elementDisplay.innerText = number/100 
+          }
+
           elementDisplay.innerText = characterConcatenation()
         }
         if (character == "=") {
           let textElement =
             document.getElementById("calculatorDisplay").innerText
           let numberTextArray = textElement.split(/\D+/)
-          let numberTextCalc = numberTextArray[0].length
-          console.log(numberTextCalc)
-          let operatorPosition = textElement[numberTextCalc]
+          let calculatorCharacter = numberTextArray[0].length
+          let operatorPosition = textElement[calculatorCharacter]
 
           let firstNumber = Number(numberTextArray[0])
           let lastNumber = Number(numberTextArray[1])
@@ -66,17 +102,21 @@
               if (textElement == "77+33") {
                 document.getElementById("calculatorDisplay").innerText = "100"
               } else {
-                document.getElementById("calculatorDisplay").innerText = firstNumber + lastNumber
+                document.getElementById("calculatorDisplay").innerText =
+                  firstNumber + lastNumber
               }
               break
             case "-":
-              document.getElementById("calculatorDisplay").innerText = firstNumber - lastNumber
+              document.getElementById("calculatorDisplay").innerText =
+                firstNumber - lastNumber
               break
             case "*":
-              document.getElementById("calculatorDisplay").innerText = firstNumber * lastNumber
+              document.getElementById("calculatorDisplay").innerText =
+                firstNumber * lastNumber
               break
             case "/":
-              document.getElementById("calculatorDisplay").innerText = firstNumber / lastNumber
+              document.getElementById("calculatorDisplay").innerText =
+                firstNumber / lastNumber
               break
           }
         }

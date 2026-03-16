@@ -8,11 +8,13 @@ body {
 #container {
   background-color: rgb(236, 236, 236);
   border: 1px solid black;
+  border-radius: 22px;
 }
 
 #containerHeader {
   display: flex;
   justify-content: space-around;
+
 
   padding: 10px;
 }
@@ -28,6 +30,7 @@ body {
   display: grid;
   gap: 5px;
   border: 1px solid black;
+  border-radius: 15px;
   width: 330px;
   height: 50px;
   padding: 5px;
@@ -37,14 +40,14 @@ body {
   display: block;
   padding: 10px;
 
-  border: 1px solid black;
-
-  background-color: aqua;
+  background-color: rgb(137, 205, 205);
+  border-radius: 10px;
   text-align: right;
 }
 
 #containerButtons {
   border: 1px solid black;
+  border-radius: 20px;
   padding: 10px;
   width: 400px;
   height: 400px;
@@ -56,6 +59,14 @@ body {
 
 .button {
   font-size: 22px;
+  border-radius: 15px;
+  box-shadow: 2px 2px grey;
+}
+
+.button:active {
+  font-size: 22px;
+  border-radius: 15px;
+  box-shadow: none;
 }
 
 #bigZero {

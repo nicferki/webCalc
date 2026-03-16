@@ -18,7 +18,7 @@
         <button class="button" onclick="clearAll()">C</button>
         <button class="button" onclick="display('%')">%</button>
         <button class="button" onclick="display('/')">/</button>
-        <button class="button" onclick="display('*')">*</button>
+        <button class="button" onclick="display('x')">x</button>
         <button class="button" onclick="display('7')">7</button>
         <button class="button" onclick="display('8')">8</button>
         <button class="button" onclick="display('9')">9</button>
@@ -70,7 +70,7 @@
                 document.getElementById("calculatorDisplay").innerText =
                   firstNumber - lastNumber
                 break
-              case "*":
+              case "x":
                 document.getElementById("calculatorDisplay").innerText =
                   firstNumber * lastNumber
                 break
@@ -81,9 +81,9 @@
             }
           }
 
-          if (character == "%"){
+          if (character == "%") {
             let number = Number(elementDisplay.innerText)
-            elementDisplay.innerText = number/100 
+            elementDisplay.innerText = number / 100
           }
 
           elementDisplay.innerText = characterConcatenation()
@@ -110,7 +110,7 @@
               document.getElementById("calculatorDisplay").innerText =
                 firstNumber - lastNumber
               break
-            case "*":
+            case "x":
               document.getElementById("calculatorDisplay").innerText =
                 firstNumber * lastNumber
               break

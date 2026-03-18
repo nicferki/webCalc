@@ -2,81 +2,86 @@ function clearAll() {
   document.getElementById("calculatorDisplay").innerText = ""
 }
 function display(character) {
-  if (character != "=") {
-    var elementDisplay = document.getElementById("calculatorDisplay")
+  const SELECTOR_OPERATOR_EXCLUDE_DOT = /\D(?<!\.)/
 
+  let elementDisplay = document.getElementById("calculatorDisplay")
+  let operatorArray = elementDisplay.innerText.match(
+    SELECTOR_OPERATOR_EXCLUDE_DOT,
+  )
+  if (character != "=") {
     function characterConcatenation() {
-      let element = elementDisplay.innerText
-      return (element = element + character)
+      return (elementDisplay.innerText = elementDisplay.innerText + character)
     }
 
     if (
-      elementDisplay.innerText.match(/\D+/g) != null && // 1+ = ["+"]
-      elementDisplay.innerText.match(/\D+/g).length == 1 &&
-      isNaN(character)
+      operatorArray != null &&
+      operatorArray.length == 1 &&
+      (character == "+" ||
+        character == "-" ||
+        character == "x" ||
+        character == "/")
     ) {
-      let numberTextArray = elementDisplay.innerText.split(/\D+/)
-      let calculatorCharacter = numberTextArray[0].length
-      let operatorPosition = elementDisplay.innerText[calculatorCharacter]
+      let numberTextArray = elementDisplay.innerText.split(
+        SELECTOR_OPERATOR_EXCLUDE_DOT,
+      )
 
-      let firstNumber = Number(numberTextArray[0])
-      let lastNumber = Number(numberTextArray[1])
+      let firstNumber = parseFloat(numberTextArray[0])
+      let lastNumber = parseFloat(numberTextArray[1])
 
-      switch (operatorPosition) {
+      switch (operatorArray[0]) {
         case "+":
-          document.getElementById("calculatorDisplay").innerText =
-            firstNumber + lastNumber
+          elementDisplay.innerText = (firstNumber + lastNumber)
+            .toFixed(2)
+            .replace(/\.?0+$/, "")
           break
         case "-":
-          document.getElementById("calculatorDisplay").innerText =
-            firstNumber - lastNumber
+          elementDisplay.innerText = (firstNumber - lastNumber)
+            .toFixed(2)
+            .replace(/\.?0+$/, "")
           break
         case "x":
-          document.getElementById("calculatorDisplay").innerText =
-            firstNumber * lastNumber
+          elementDisplay.innerText = (firstNumber * lastNumber)
+            .toFixed(2)
+            .replace(/\.?0+$/, "")
           break
         case "/":
-          document.getElementById("calculatorDisplay").innerText =
-            firstNumber / lastNumber
+          elementDisplay.innerText = (firstNumber / lastNumber)
+            .toFixed(2)
+            .replace(/\.?0+$/, "")
           break
       }
-    }
-
-    if (character == "%") {
-      let number = Number(elementDisplay.innerText)
-      elementDisplay.innerText = number / 100
     }
 
     elementDisplay.innerText = characterConcatenation()
   }
   if (character == "=") {
-    let textElement = document.getElementById("calculatorDisplay").innerText
-    let numberTextArray = textElement.split(/\D+/)
-    let calculatorCharacter = numberTextArray[0].length
-    let operatorPosition = textElement[calculatorCharacter]
+    let numberTextArray = elementDisplay.innerText.split(
+      SELECTOR_OPERATOR_EXCLUDE_DOT,
+    )
 
-    let firstNumber = Number(numberTextArray[0])
-    let lastNumber = Number(numberTextArray[1])
-    switch (operatorPosition) {
+    let firstNumber = parseFloat(numberTextArray[0])
+    let lastNumber = parseFloat(numberTextArray[1])
+
+    switch (operatorArray[0]) {
       case "+":
-        if (textElement == "77+33") {
-          document.getElementById("calculatorDisplay").innerText = "100"
-        } else {
-          document.getElementById("calculatorDisplay").innerText =
-            firstNumber + lastNumber
-        }
+        elementDisplay.innerText = (firstNumber + lastNumber)
+          .toFixed(2)
+          .replace(/\.?0+$/, "")
         break
       case "-":
-        document.getElementById("calculatorDisplay").innerText =
-          firstNumber - lastNumber
+        elementDisplay.innerText = (firstNumber - lastNumber)
+          .toFixed(2)
+          .replace(/\.?0+$/, "")
         break
       case "x":
-        document.getElementById("calculatorDisplay").innerText =
-          firstNumber * lastNumber
+        elementDisplay.innerText = (firstNumber * lastNumber)
+          .toFixed(2)
+          .replace(/\.?0+$/, "")
         break
       case "/":
-        document.getElementById("calculatorDisplay").innerText =
-          firstNumber / lastNumber
+        elementDisplay.innerText = (firstNumber / lastNumber)
+          .toFixed(2)
+          .replace(/\.?0+$/, "")
         break
     }
   }

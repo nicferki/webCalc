@@ -1,18 +1,19 @@
+let elementDisplay = document.getElementById("calculatorDisplay")
+
 function clearAll() {
   document.getElementById("calculatorDisplay").innerText = ""
 }
+function characterConcatenation(character) {
+  return (elementDisplay.innerText = elementDisplay.innerText + character)
+}
+
 function display(character) {
   const SELECTOR_OPERATOR_EXCLUDE_DOT = /\D(?<!\.)/
 
-  let elementDisplay = document.getElementById("calculatorDisplay")
   let operatorArray = elementDisplay.innerText.match(
     SELECTOR_OPERATOR_EXCLUDE_DOT,
   )
   if (character != "=") {
-    function characterConcatenation() {
-      return (elementDisplay.innerText = elementDisplay.innerText + character)
-    }
-
     if (
       operatorArray != null &&
       operatorArray.length == 1 &&
@@ -52,7 +53,7 @@ function display(character) {
       }
     }
 
-    elementDisplay.innerText = characterConcatenation()
+    elementDisplay.innerText = characterConcatenation(character)
   }
   if (character == "=") {
     let numberTextArray = elementDisplay.innerText.split(
